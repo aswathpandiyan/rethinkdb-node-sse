@@ -6,6 +6,9 @@ const useEventSource = (url) => {
 
   useEffect(() => {
     const source = new EventSource(url);
+    source.onopen = function () {
+      console.log('conneted');
+    };
 
     source.onmessage = function logEvents(event) {
       updateData([...data, JSON.parse(event.data)]);
